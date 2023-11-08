@@ -8,6 +8,7 @@ class DemoReleaseApplicationTests {
 
   @Test
   void contextLoads() {
+    throw new IllegalStateException("Test not implemented");
   }
 
 }
