@@ -31,7 +31,7 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: buildBootImage --imageName=ghcr.io/olivier-lemerdy-kry/demo-release:${{ github.ref_name }} --publishImage
+        arguments: buildBootImage --publishImage
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
