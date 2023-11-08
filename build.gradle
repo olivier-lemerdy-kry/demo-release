@@ -40,6 +40,10 @@ publishing {
     }
 }
 
+release {
+    buildTasks = ['build']
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
