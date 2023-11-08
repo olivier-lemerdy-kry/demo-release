@@ -25,7 +25,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - run: git config --global user.email "olivier.lemerdy+gha@kry.se"
-      - run: git config --global user.name "Github Actions"
+      - run: git config --global user.name "${{ GITHUB_ACTOR }}"
       - name: Release with Gradle
         uses: gradle/gradle-build-action@v2
         with:
