@@ -33,7 +33,7 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: -Pversion=${{ github.ref_name}} bootBuildImage --publishImage
+          arguments: -Pversion=${{ github.ref_name}} bootBuildImage --publishImage --imageName=ghcr.io/olivier-lemerdy-kry/demo-release/${{ github.ref_name }}
         env:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
