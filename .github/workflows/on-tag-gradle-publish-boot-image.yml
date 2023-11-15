@@ -8,6 +8,6 @@ on:
 
 jobs:
   call-gradle-publish-boot-image:
-    uses: ./.github/actions/gradle-publish-boot-image.yml@main
+    uses: ./.github/workflows/gradle-publish-boot-image.yml
     with:
       version: ${{ github.ref_name }}

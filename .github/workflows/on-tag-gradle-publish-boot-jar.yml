@@ -8,6 +8,6 @@ on:
 
 jobs:
   call-gradle-publish-boot-jar:
-    uses: ./.github/actions/gradle-publish-boot-jar.yml@main
+    uses: ./.github/workflows/gradle-publish-boot-jar.yml
     with:
       version: ${{ github.ref_name }}
