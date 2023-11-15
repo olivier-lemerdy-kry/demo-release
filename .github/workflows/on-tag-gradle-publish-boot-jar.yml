@@ -8,6 +8,9 @@ on:
 
 jobs:
   call-gradle-publish-boot-jar:
+    permissions:
+      contents: read
+      packages: write
     uses: ./.github/workflows/gradle-publish-boot-jar.yml
     with:
       version: ${{ github.ref_name }}
