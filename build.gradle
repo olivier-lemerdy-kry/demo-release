@@ -40,7 +40,7 @@ publishing {
 }
 
 tasks.named("bootBuildImage") {
-    imageName.set("ghcr.io/olivier-lemerdy-kry/${project.name}")
+    imageName.set("ghcr.io/olivier-lemerdy-kry/${project.name}:${project.version}")
     docker {
         publishRegistry {
             username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
