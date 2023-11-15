@@ -5,16 +5,17 @@
 # This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
 
-name: Gradle Publish Boot Jar
+name: Gradle Publish Boot Image
 
 on:
-  push:
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
-      - '[0-9]+.[0-9]+.[0-9]+-rc.[0-9]+'
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 jobs:
-  build:
+  publish-boot-image:
 
     runs-on: ubuntu-latest
     permissions:
@@ -30,12 +31,10 @@ jobs:
           distribution: 'temurin'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
 
-      # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-      # the publishing section of your build.gradle
-      - name: Publish to GitHub Packages
+      - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: -Pversion=${{ github.ref_name }} publish
+          arguments: -Pversion=${{ inputs.version }} bootBuildImage --publishImage --imageName=ghcr.io/olivier-lemerdy-kry/demo-release:${{ inputs.version }}
         env:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}

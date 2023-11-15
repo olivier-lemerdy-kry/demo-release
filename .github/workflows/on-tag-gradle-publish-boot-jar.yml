@@ -1,0 +1,13 @@
+name: Gradle Publish Boot Jar
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-rc.[0-9]+'
+
+jobs:
+  call-gradle-publish-boot-jar:
+    uses: ./.github/actions/gradle-publish-boot-jar.yml
+    with:
+      version: ${{ github.ref_name }}
