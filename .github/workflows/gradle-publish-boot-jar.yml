@@ -8,8 +8,10 @@
 name: Gradle Publish Boot Jar
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-rc.[0-9]+'
 
 jobs:
   build:
@@ -31,14 +33,14 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build
+        arguments: -Pversion=${{ github.ref.name}} build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
     - name: Publish to GitHub Packages
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: publish
+        arguments: -Pversion=${{ github.ref.name}} publish
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
