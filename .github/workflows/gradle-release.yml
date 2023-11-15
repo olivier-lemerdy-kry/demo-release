@@ -5,7 +5,7 @@ on:
     inputs:
       releaseVersion:
         description: 'Version to release'
-      nextVersion:
+      newVersion:
         description: 'Version to set after release'
 
 jobs:
@@ -27,6 +27,6 @@ jobs:
       - name: Release with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=${{ github.event.inputs.releaseVersion }} -Prelease.newVersion=${{ github.event.inputs.nextVersion }}
+          arguments: release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=${{ github.event.inputs.releaseVersion }} -Prelease.newVersion=${{ github.event.inputs.newVersion }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
